@@ -1,0 +1,135 @@
+﻿<UserControl x:Class="FlightSimulatorProject.Views.PanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulatorProject.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="0,-6,0.333,5.667">
+        <Button x:Name="play" Click="Play_Click" Content="&#x23f5;" HorizontalAlignment="Left" Margin="330,332,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="fastForward" Click="FastForward_Click" Content="&#x23ed;" HorizontalAlignment="Left" Margin="410,332,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="connect" Content="Connect" HorizontalAlignment="Left" Margin="10,332,0,0" VerticalAlignment="Top" Width="75" Click="Connect_Click"/>
+        <Button x:Name="pause" Content="&#10074; &#10074;" HorizontalAlignment="Left" Margin="250,332,0,0" VerticalAlignment="Top" Width="75" Click="Pause_Click"/>
+        <Button x:Name="fastBackward" Content="&#x23ee;" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="170,332,0,0" Click="fastBackward_Click"/>
+        <Button x:Name="stop" Content="&#x23f9;" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="90,332,0,0" Click="Stop_Click"/>
+        <Button x:Name="faster" Content="&#x23f6;" HorizontalAlignment="Left" Margin="10,273,0,0" VerticalAlignment="Top" Width="75" Click="faster_Click"/>
+        <Button x:Name="slower" Content="&#x23f7;" HorizontalAlignment="Left" Margin="10,299,0,0" VerticalAlignment="Top" Width="75" Click="slower_Click"/>
+        <Slider x:Name="slValue" Maximum="{Binding Path= M.DataSize}" HorizontalAlignment="Left" Margin="10,371,0,0" VerticalAlignment="Top" Width="773" Value="{Binding Path = M.VM_Panel.DataIndex}"/>
+        <Label Content="Play Speed" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="512,322,0,0"/>
+        <Label Content="{Binding Path=M.VM_Panel.PlaySpeed}" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="614,322,0,0" RenderTransformOrigin="0.044,0.575"/>
+        <Button Content="investigate!" Background="Red" Foreground="Beige"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="90,299,0,0" Click="Button_Click_2"/>
+
+        <Canvas x:Name="JoyStickCanvas" HorizontalAlignment="Left"
+            Width= "300"  Height="300" Margin="500,12,0,138">
+            <TextBlock Text="&#x2794;" Height="50" Width="50" FontSize="40" Foreground="DimGray" Canvas.Left="205" Canvas.Top="117" />
+            <TextBlock Text="&#x2794;" Height="50" Width="50" FontSize="40" Foreground="Black" Canvas.Left="127" Canvas.Top="203" RenderTransformOrigin="0.5,0.5" >
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90.012"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock Text="&#x2794;" Height="50" Width="50" FontSize="40" Foreground="Black" Canvas.Left="122" Canvas.Top="43" RenderTransformOrigin="0.5,0.5" >
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90.437"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock Text="&#x2794;" Height="50" Width="50" FontSize="40" Foreground="DimGray" Canvas.Left="44" Canvas.Top="124" RenderTransformOrigin="0.5,0.5" >
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="179.573"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+
+            <Ellipse
+                Width="150" 
+                Height="150" HorizontalAlignment="Center"
+                Canvas.Left="75"
+                Canvas.Bottom="75"
+                StrokeThickness="2"
+                Stroke="Black"
+                Fill="LightGray"/>
+
+            <Ellipse x:Name="JoyStickBorder"
+                Width="124" 
+                Height="124"
+                Canvas.Left="88"
+                Canvas.Bottom="100"
+                StrokeThickness="2"
+                Stroke="Black"
+                Fill="Gray" Canvas.Top="88"/>
+            <!--"Canvas.Left 125" "Canvas.Bottom 125 -->
+            <!-- Dynamically move based on size of JoystickBorder -->
+            <!-- Dynamically move based on size of JoystickBorder -->
+            <Ellipse x:Name="JoyStickCircle"  
+                Width="50" 
+                Height="50"
+                Canvas.Left= "{Binding M.JoyStickElevator}"
+                StrokeThickness="2"
+                Stroke="Black"
+                Fill="DarkSlateGray" Canvas.Top="{Binding M.JoyStickAileron}" />
+        </Canvas>
+
+        <Canvas x:Name="RudderCanvas" HorizontalAlignment="Center">
+            <Rectangle Width="200" Height="30" Fill="Gray" Stroke="Black" StrokeThickness="2" Canvas.Left="129" Canvas.Top="270" RadiusX = "10" RadiusY = "10" />
+            <Rectangle Width="35" Height="30" Fill="DarkSlateGray" Stroke="Black" StrokeThickness="2" Canvas.Left="211" Canvas.Top="270" />
+        </Canvas>
+
+        <Canvas x:Name="CanvasThrottle" HorizontalAlignment="Center">
+            <Rectangle Width="200" Height="30" Fill="Gray" Stroke="Black" StrokeThickness="2" Canvas.Left="-13" Canvas.Top="174" RadiusX = "10" RadiusY = "10" RenderTransformOrigin="0.5,0.5" >
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="89.86"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle Width="30" Height="30" Fill="DarkSlateGray" Stroke="Black" StrokeThickness="2" Canvas.Left="73" Canvas.Top="{Binding Path= M.JoyStickThrottle}"/>
+        </Canvas>
+        <Button Content="load" HorizontalAlignment="Left" Margin="56,45,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,12,0,0" Text="{Binding Path = APIPath}" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
+        <Grid Width="150" Background="DarkSlateGray" Margin="10,73,640,182" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="l1" Content="AltMeter:" Grid.Row="0" Grid.Column="0" FontSize="12" Foreground="Beige"></Label>
+            <Label x:Name="l2" Content="AirSpeed:" Grid.Row="1" Grid.Column="0" FontSize="12" Foreground="Beige"></Label>
+            <Label x:Name="l3" Content="Direction:" Grid.Row="2" Grid.Column="0" FontSize="12" Foreground="Beige"></Label>
+            <Label x:Name="l4" Content="Yaw:" Grid.Row="3" Grid.Column="0" FontSize="12" Foreground="Beige"></Label>
+            <Label x:Name="l5" Content="Roll:" Grid.Row="4" Grid.Column="0" FontSize="12" Foreground="Beige"></Label>
+            <Label x:Name="l6" Content="Pitch:" Grid.Row="5" Grid.Column="0" FontSize="12" Foreground="Beige"></Label>
+
+            <Label x:Name="l7" Content="{Binding Path=M.AltMeter}" Grid.Row="0" Grid.Column="1" FontSize="12" Foreground="Beige"></Label>
+            <Label x:Name="l8" Content="{Binding Path=M.AirSpeed}" Grid.Row="1" Grid.Column="2" FontSize="12" Foreground="Beige"></Label>
+            <Label x:Name="l9" Content="{Binding Path=M.Direction}" Grid.Row="2" Grid.Column="3" FontSize="12" Foreground="Beige"></Label>
+            <Label x:Name="l10" Content="{Binding Path=M.Yaw}" Grid.Row="3" Grid.Column="4" FontSize="12" Foreground="Beige"></Label>
+            <Label x:Name="l11" Content="{Binding Path=M.Roll}" Grid.Row="4" Grid.Column="5" FontSize="12" Foreground="Beige"></Label>
+            <Label x:Name="l12" Content="{Binding Path=M.Pitch}" Grid.Row="4" Grid.Column="1" FontSize="12" Foreground="Beige" Height="26" Margin="0,26,0,0" Grid.RowSpan="2" VerticalAlignment="Top"></Label>
+
+        </Grid>
+    </Grid>
+</UserControl>

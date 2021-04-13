@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="FlightSimulatorProject.Views.GraphView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulatorProject.Views" xmlns:oxy="http://oxyplot.org/wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.6*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListBoxItem Selected="ListBoxItem_Selected">aileron</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">elevator</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">rudder</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">flaps</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">slats</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">speedbreak</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">throttle0</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">throttle1</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">engine-pump0</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">engine-pump1</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">electric-pump0</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">electric-pump1</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">external-power</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">APU-generator</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">latitude-deg</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">longitude-deg</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">altitude-ft</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">roll-deg</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">pitch-deg</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">heading-deg</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">side-slip-deg</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">airspeed-kt</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">glideslope</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">vertical-speed-fps</ListBoxItem>
+
+            <ListBoxItem Selected="ListBoxItem_Selected">airspeed-indicator_indicated-speed-kt</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">altimeter_indicated-altitude-ft</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">altimeter_pressure-alt-ft</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">attitude-indicator_indicated-pitch-deg</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">attitude-indicator_indicated-roll-deg</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">attitude-indicator_internal-pitch-deg</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">attitude-indicator_internal-roll-deg</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">encoder_indicated-altitude-ft</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">encoder_pressure-alt-ft</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">gps_indicated-altitude-ft</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">gps_indicated-ground-speed-kt</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">gps_indicated-vertical-speed</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">indicated-heading-deg</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">magnetic-compass_indicated-heading-deg</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">slip-skid-ball_indicated-slip-skid</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">turn-indicator_indicated-turn-rate</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">vertical-speed-indicator_indicated-speed-fpm</ListBoxItem>
+            <ListBoxItem Selected="ListBoxItem_Selected">engine_rpm</ListBoxItem>
+
+        </ListBox>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <oxy:PlotView Grid.Column="0" Model="{Binding Path = GraphM.FeatureGraph.DataPlot}"/>
+                <oxy:PlotView Grid.Column="1" Model="{Binding Path = GraphM.CorrelativeGraph.DataPlot}"/>
+
+            </Grid>
+            <Grid Grid.Row="1">
+                <oxy:PlotView  Model="{Binding Path = GraphM.LinearRegressionGraph.DataPlot}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
