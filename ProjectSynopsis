@@ -1,0 +1,42 @@
+Project Synopsis/File Structure/ Implementation of Main Files
+
+
+PROJECT SYNOPSIS : In our project the user can see a simulation of a flight in a Cessna 172 rotor plane and see active data attributes of the given flight whether through current position of Joystick Rudder, Throttle . General Data sets of Height, Speed, Yaw, current Direction, Roll, and Pitch of plane while in flight. We also allow our user to see and understand different correlation and regression factors between different data attributes during the flight.
+
+File Structure :
+                  
+            bin                |Debug,Release
+            helpers            |Client,FileParser, InfoServer 
+            Images             |
+            Interfaces         |IClient,IPanelModel,IServer
+            Models             |GraphModel, PanelModel
+            Obj                | 
+            ViewModels         |PanelViewModel, MasterViewModel, GraphManager,GraphViewModel
+            Views              |GraphWindow, PanelView, GraphView, MainWindow 
+
+
+Implementation of Main Files :
+                              
+                              InfoServer : A class which takes care of accessing and handling data from FlightGear API
+                              
+                              FileParser : A function which takes a CSV file and parses it to be used in the 
+                                          Application 
+                             
+                              PanelModel : The Business Logic of the Panel implementation  and and all "first" layer 
+                                           components of the application
+                             
+                              GraphModel : The Business Logic of the Graph implementation and and all "second" layer 
+                                           components of the application
+
+                              PanelViewModel : The ViewModel of Panel implementation 
+
+                              GraphViewModel : The ViewModel of the Graph implementation
+
+                              MasterViewModel : The Master Component which runs all other ViewModels conglomerate
+                                                into, basically the entire application center onto this component.
+
+                              PanelView :  The View of the Panel , basically the visual implementation of all 
+                                           first layer components
+                             
+                              GraphWindow : The View of the  Graph , allows user to view all second "layer" 
+                                            components. 
